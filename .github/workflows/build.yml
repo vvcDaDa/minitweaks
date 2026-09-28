@@ -41,6 +41,8 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v6
       - name: download build artifact
         uses: actions/download-artifact@v8
         with:
@@ -48,6 +50,7 @@ jobs:
       - name: release 2.0.2
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           if gh release view 2.0.2 >/dev/null 2>&1; then
             gh release upload 2.0.2 minitweaks-2.0.2.jar --clobber
@@ -55,5 +58,6 @@ jobs:
           else
             gh release create 2.0.2 minitweaks-2.0.2.jar --target "$GITHUB_SHA" --title "2.0.2" --notes "Updated to 26.3"
           fi
+
 
 
