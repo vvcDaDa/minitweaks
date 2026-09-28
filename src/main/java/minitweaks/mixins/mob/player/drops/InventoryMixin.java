@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Inventory.class)
 public abstract class InventoryMixin {
-    @ModifyExpressionValue(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;"))
+    @ModifyExpressionValue(method = "dropAll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;createItemStackToDrop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;"))
     private ItemEntity modifyAge(ItemEntity droppedItem) {
         // check for null since player.dropItem() is nullable
         if(droppedItem != null) {

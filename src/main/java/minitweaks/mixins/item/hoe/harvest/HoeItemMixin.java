@@ -3,9 +3,10 @@ package minitweaks.mixins.item.hoe.harvest;
 import minitweaks.MiniTweaksSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -23,13 +24,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(HoeItem.class)
+@Mixin(Item.class)
 public abstract class HoeItemMixin {
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void harvestCrop(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Level level = context.getLevel();
         // check if rule is enabled and action is server side
-        if(MiniTweaksSettings.quickHarvesting && !level.isClientSide()) {
+        if(MiniTweaksSettings.quickHarvesting && !level.isClientSide() && context.getItemInHand().is(ItemTags.HOES)) {
             BlockPos pos = context.getClickedPos();
             BlockState state = level.getBlockState(pos);
             Player player = context.getPlayer();
