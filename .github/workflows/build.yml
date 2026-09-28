@@ -4,7 +4,9 @@
 # against bad commits.
 
 name: build
-on: [pull_request, push]
+on:
+  pull_request:
+  push:
 
 permissions:
   contents: read
@@ -46,5 +48,12 @@ jobs:
       - name: release 2.0.2
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create 2.0.2 minitweaks-2.0.2.jar --target "$GITHUB_SHA" --title "2.0.2" --notes "Updated to 26.3"
+        run: |
+          if gh release view 2.0.2 >/dev/null 2>&1; then
+            gh release upload 2.0.2 minitweaks-2.0.2.jar --clobber
+            gh release edit 2.0.2 --title "2.0.2" --notes "Updated to 26.3"
+          else
+            gh release create 2.0.2 minitweaks-2.0.2.jar --target "$GITHUB_SHA" --title "2.0.2" --notes "Updated to 26.3"
+          fi
+
 
