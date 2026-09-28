@@ -11,6 +11,12 @@ Minitweaks is an extension for [Carpet Mod](https://github.com/gnembon/fabric-ca
 [<img src="https://img.shields.io/github/downloads/manyrandomthings/minitweaks/total?label=Github&color=brightgreen&logo=github" />](https://github.com/manyrandomthings/minitweaks/releases)
 [<img src="https://cf.way2muchnoise.eu/735546.svg" />](https://www.curseforge.com/minecraft/mc-mods/carpet-minitweaks)
 
+# Updated to 26.3
+
+Download the 26.3 JAR from [the 26.3 release](https://github.com/vvcDaDa/minitweaks/releases/tag/2.0.2).
+
+This port was contributed by [vvcDaDa](https://github.com/vvcDaDa) with assistance from [Codex](https://github.com/codex).
+
 # Minitweaks Carpet Rules List
 ## allChargedCreeperHeadsDrop
 All mobs killed by a charged creeper drop their head instead of only one  
